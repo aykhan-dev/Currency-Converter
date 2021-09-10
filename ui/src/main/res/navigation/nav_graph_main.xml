@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/exchangerFragment">
+
+    <fragment
+        android:id="@+id/exchangerFragment"
+        android:name="az.kapital.test.ui.view.fragments.exchanger.ExchangerFragment"
+        android:label="@string/exchanger"
+        tools:layout="@layout/fragment_exchanger">
+
+        <action
+            android:id="@+id/toCurrencySelector"
+            app:destination="@id/selectorFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/selectorFragment"
+        android:name="az.kapital.test.ui.view.fragments.selector.SelectorFragment"
+        android:label="@string/currency_selector"
+        tools:layout="@layout/fragment_selector" >
+        <argument
+            android:name="isBaseSelection"
+            app:argType="boolean" />
+    </fragment>
+
+</navigation>
