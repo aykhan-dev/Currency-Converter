@@ -1,18 +1,16 @@
 package az.kapital.test.domain.usecases;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import az.kapital.test.data.entities.NewsEntity;
-import az.kapital.test.data.repositories.news.NewsRepository;
 import az.kapital.test.domain.base.BaseUseCase;
 import az.kapital.test.domain.model.News;
+import az.kapital.test.domain.repositories.NewsRepository;
 import io.reactivex.rxjava3.core.Flowable;
 import lombok.RequiredArgsConstructor;
 
-public class GetNewsUseCase extends BaseUseCase<Flowable<List<NewsEntity>>, Flowable<List<News>>, GetNewsUseCase.Params> {
+public class GetNewsUseCase extends BaseUseCase<Flowable<List<News>>, GetNewsUseCase.Params> {
 
     private final NewsRepository repository;
 
@@ -27,18 +25,8 @@ public class GetNewsUseCase extends BaseUseCase<Flowable<List<NewsEntity>>, Flow
     }
 
     @Override
-    protected Flowable<List<NewsEntity>> process(Params params) {
+    protected Flowable<List<News>> process(Params params) {
         return repository.getBaseCurrencyNews();
-    }
-
-    @Override
-    protected Flowable<List<News>> mapDTO(Flowable<List<NewsEntity>> data) {
-        return data.map(newsDTOS -> {
-            List<News> result = new ArrayList<>();
-            for (NewsEntity i : newsDTOS)
-                result.add(new News(i.getId(), i.getTitle(), i.getContent(), i.getDate()));
-            return result;
-        });
     }
 
 }

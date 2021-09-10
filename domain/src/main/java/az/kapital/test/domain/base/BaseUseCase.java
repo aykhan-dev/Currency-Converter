@@ -1,14 +1,11 @@
 package az.kapital.test.domain.base;
 
-public abstract class BaseUseCase<DTO, Result, Params> {
+public abstract class BaseUseCase<Result, Params> {
 
-    protected abstract DTO process(Params params);
-
-    protected abstract Result mapDTO(DTO data);
+    protected abstract Result process(Params params);
 
     public Result execute(Params params) {
-        DTO data = process(params);
-        return mapDTO(data);
+        return process(params);
     }
 
 }
